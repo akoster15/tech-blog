@@ -3,7 +3,6 @@ const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-// Get all comments
 router.get('/'), (req, res) => {
     Comment.findAll({})
     .then(dbCommentData => res.json(dbCommentData))
@@ -13,7 +12,6 @@ router.get('/'), (req, res) => {
     })
 };
 
-// Get comments by id
 router.get('/:id', (req, res) => {
     Comment.findAll({
         where: {
@@ -51,7 +49,7 @@ router.put('/:id', withAuth, (req, res) => {
     })
     .then(dbCommentData => {
         if (!dbCommentData) {
-            res.status(404).json({ message: "No comment found with this id!" });
+            res.status(404).json({ message: "A comment with this ID could not be found!" });
             return;
         }
         res.json(dbCommentData);
@@ -61,7 +59,6 @@ router.put('/:id', withAuth, (req, res) => {
     });
 });
 
-// DELETE - Deletes comments with associated id
 router.delete('/', withAuth, (req, res) => {
     Comment.destroy({
         where: {
@@ -70,7 +67,7 @@ router.delete('/', withAuth, (req, res) => {
     })
     .then(dbCommentData => {
         if (!dbCommentData) {
-            res.status(404).json({ message: "No comment found with this id!" });
+            res.status(404).json({ message: "A comment with this ID could not be found!" });
             return;
         }
         res.json(dbCommentData);
