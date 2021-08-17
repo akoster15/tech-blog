@@ -9,6 +9,6 @@ async function logout() {
     } else {
       alert('Unable to logout!');
     }
-  }
+  };
   
   document.querySelector('#logout').addEventListener('click', logout);
